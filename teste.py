@@ -2,10 +2,10 @@ from pywinauto import Application
 from pywinauto import Desktop
 
 # Conectar à janela com o título que contém "teoff-exe"
-app = Application(backend="uia").connect(title_re=".*system32*")
+app = Application(backend="uia").connect(title_re=".*teoff-exe*")
 
 # Encontrar a janela pelo título
-janela = app.window(title_re=".*system32*")
+janela = app.window(title_re=".*teoff-exe*")
 
 # Função para capturar texto de controles de texto
 def get_text_from_window(window):
@@ -24,8 +24,8 @@ try:
     texto = "\n".join(get_text_from_window(janela))
     print("Texto da janela:")
     for item in texto.split("\n"):
-        if "AlexO>" in item:
-            print(texto.split("AlexO>")[1].split("Onning")[0])
+        if "Quant. Fatores ..:>" in item:
+            print(texto.split("Quant. Fatores ..:")[1].split("│")[0])
     print(texto)
 except Exception as e:
     print(f"Erro ao obter o texto da janela: {e}")
